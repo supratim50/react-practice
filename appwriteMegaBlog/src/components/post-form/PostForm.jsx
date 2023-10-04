@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import {useForm} from "react-hook-form";
 import {Button, Input, Select, RET} from "../index";
 import appWriteService from "../../appwrite/configDB";
@@ -51,7 +51,30 @@ const PostForm = ({post}) => {
       }
     }
 
-    
+    const slugTransform = useCallback((value) => {
+      if(value && typeof value === 'string') {
+        return value
+        .trim()
+        .toLowerCase()
+        .replace(/^[a-zA-Z\d\s]+/g, '-')
+        .replace(/\s/g, '-')
+      }
+      
+      return ''
+    }, [])
+
+    useEffect(() => {
+      const subscription = watch((value, {name}) => {
+        if(name === 'title') {
+          setValue('slug', slugTransform(value.title, {shouldValidate: true}))
+        }
+      });
+
+      return () => {
+        subscription.unsubscribe();
+      }
+    }, [watch, slugTransform, setValue])
+
 
   return (
     <div>PostForm</div>

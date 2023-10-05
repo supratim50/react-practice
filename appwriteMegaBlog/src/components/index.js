@@ -4,6 +4,11 @@ import Container from "./container/Container";
 import Logo from "./Logo";
 import LogoutBtn from "./Header/LogoutBtn";
 import Button from "./Button";
+import Signup from "./Signup";
+import Login from "./Login";
+// import Post from "./Post";
+import PostCard from "./PostCard"
+import PostForm from "./post-form/PostForm"
 
 
-export {Header, Footer, Container, Logo, LogoutBtn, Button};
+export {Header, Footer, Container, Logo, LogoutBtn, Button, Signup, Login, PostForm, PostCard};

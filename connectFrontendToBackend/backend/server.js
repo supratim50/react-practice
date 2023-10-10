@@ -1,11 +1,12 @@
-const express = require("express");
+import express from "express";
 
 const app = express();
 
-const port = process.env.PORT || 3000;
+// app.get("/", (req, res) => {
+//     res.send("Server is ready!")
+// })
 
 app.get('/api/products', (req, res) => {
-
     const products = [
         {
             id: 1,
@@ -28,21 +29,11 @@ app.get('/api/products', (req, res) => {
             price: 9500
         }
     ]
-
-    // http://localhost:3000/api/products?search=chair
-
-    if(req.query.search) {
-        const filterProducts=products.filter((product) => product.name.includes(req.query.search));
-
-        res.send(filterProducts);
-        return;
-    }
-
-    setTimeout(() => {
-        res.send(products);
-    }, 3000)
+    res.send(products) 
 })
 
-app.listen(port, () => {
-    console.log(`Server running on port ${port}`);
+const port = process.env.PORT || 3000;
+
+app.listen(port,() => {
+    console.log(`Server at http://localhost:${port}`)
 })

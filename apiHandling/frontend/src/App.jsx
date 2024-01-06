@@ -26,7 +26,7 @@ function App() {
         setLoading(false);
       } catch (error) {
         if(axios.isCancel(error)) {
-          console.log('Request Canceled', error.message);
+          console.log('Request Canceled', error.message); 
           return 
         }
         setError(true);

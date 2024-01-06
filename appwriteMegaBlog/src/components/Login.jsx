@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Link, Navigate, useNavigate} from "react-router-dom";
-import {login as authLogin, login} from "../store/authSlice";
+import {login as authLogin} from "../store/authSlice";
 import {Button, Input, Logo} from "./index";
 import { useDispatch } from 'react-redux';
 import authService from '../appwrite/auth';
@@ -14,6 +14,7 @@ const Login = () => {
     const [error, setError] = useState("");
 
     const login = async (data) => {
+        console.log("login.jsx data ",data);
         setError("");
         try {
             const session = await authService.login(data);
